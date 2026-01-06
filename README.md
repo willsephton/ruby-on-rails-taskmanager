@@ -19,16 +19,14 @@ git clone <repository-url>
 cd taskmanager
 ```
 
-2. Create a `.env` file for local credentials (we use `dotenv-rails` for local ENV loading).
-
-Create a file named `.env` in the project root and add at least these values (example):
+2. Create an `.env` file based on the `.example.env` provided for local credentials (we use `dotenv-rails` for local ENV loading).
 
 ```text
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=password
-POSTGRES_HOST=127.0.0.1
-POSTGRES_PORT=5432
-DATABASE_URL=postgres://postgres:password@127.0.0.1:5432/taskmanager_development
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_HOST=
+POSTGRES_PORT=
+DATABASE_URL=
 ```
 
 3. Install Ruby gems:
