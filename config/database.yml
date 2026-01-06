@@ -91,6 +91,9 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    # Use DATABASE_URL when provided (Railway / managed Postgres). If not
+    # present, the configuration below will be used.
+    url: <%= ENV['DATABASE_URL'] %>
     database: taskmanager_production
     username: taskmanager
     password: <%= ENV["TASKMANAGER_DATABASE_PASSWORD"] %>
