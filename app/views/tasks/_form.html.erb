@@ -1,18 +1,32 @@
 <%= form_with model: @task do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
+  <div class="bg-white border border-gray-100 rounded-lg shadow-sm p-4 sm:p-6 space-y-6">
+    <div class="space-y-4">
+      <div>
+        <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
+        <div class="mt-1">
+          <%= f.text_field :title, class: "block w-full rounded-md border border-gray-200 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+        </div>
+      </div>
 
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
+      <div>
+        <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
+        <div class="mt-1">
+          <%= f.text_area :description, rows: 5, class: "block w-full rounded-md border border-gray-200 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm resize-vertical" %>
+        </div>
+      </div>
 
-  <p>
-    <%= f.label :completed %>
-    <%= f.check_box :completed %>
-  </p>
+      <div class="flex items-center gap-2">
+        <%= f.check_box :completed, class: "h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+        <%= f.label :completed, class: "text-sm text-gray-700" %>
+      </div>
+    </div>
 
-  <%= f.submit %>
+    <div class="flex items-center justify-end gap-3">
+      <%= link_to tasks_path, class: "inline-flex items-center px-3 py-2 rounded-md border border-gray-200 bg-white text-sm text-gray-700 hover:bg-gray-50" do %>
+        Cancel
+      <% end %>
+
+      <%= f.submit(local_assigns[:submit_label] || (@task.persisted? ? 'Update Task' : 'Create Task'), class: "inline-flex items-center gap-2 px-4 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700") %>
+    </div>
+  </div>
 <% end %>

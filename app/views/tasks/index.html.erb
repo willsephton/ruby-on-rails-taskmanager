@@ -1,16 +1,65 @@
-<h1>Tasks</h1>
+<div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
 
-<%= link_to "New Task", new_task_path %>
+  <!-- Toolbar -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+    <div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Your Tasks</h1>
+      <p class="mt-1 text-sm text-gray-500">Manage tasks quickly — create, edit or remove as you go.</p>
+    </div>
 
-<ul>
-  <% @tasks.each do |task| %>
-    <li>
-      <strong><%= task.title %></strong>
-      <% if task.completed %>(Done)<% end %>
+    <div class="flex items-center gap-3">
+      <%= link_to new_task_path, class: "inline-flex items-center gap-2 px-3 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-700 focus:outline-none" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+        <span>New Task</span>
+      <% end %>
+    </div>
+  </div>
 
-      <%= link_to "Show", task_path(task) %> |
-      <%= link_to "Edit", edit_task_path(task) %> |
-      <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: "Delete this task?" } %>
-    </li>
+  <% if @tasks.any? %>
+    <ul class="space-y-4">
+      <% @tasks.each do |task| %>
+        <li class="bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition">
+          <div class="flex items-center justify-between p-4 sm:p-5">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-3">
+                <h2 class="text-lg font-semibold text-gray-900 truncate"><%= task.title %></h2>
+                <% if task.completed %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">Completed</span>
+                <% end %>
+              </div>
+              <p class="mt-2 text-sm text-gray-500">Created <%= task.created_at.strftime("%b %d, %Y") if task.respond_to?(:created_at) %></p>
+            </div>
+
+            <div class="ml-4 flex items-center space-x-2">
+              <%= link_to task_path(task), class: "inline-flex items-center px-3 py-1 rounded-md bg-gray-50 hover:bg-gray-100 text-sm text-gray-700" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 5a2 2 0 012-2h6l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V5z"/></svg>
+                Show
+              <% end %>
+
+              <%= link_to edit_task_path(task), class: "inline-flex items-center px-3 py-1 rounded-md bg-blue-50 hover:bg-blue-100 text-sm text-blue-700" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M17.414 2.586a2 2 0 010 2.828L8.414 14.414a2 2 0 01-1.414.586H4a1 1 0 01-1-1v-3a2 2 0 01.586-1.414L14.586 2.586a2 2 0 012.828 0z"/></svg>
+                Edit
+              <% end %>
+
+              <%= button_to task_path(task), method: :delete, data: { confirm: "Delete this task?" }, form: { class: "inline" }, class: "inline-flex items-center px-3 py-1 rounded-md bg-red-50 hover:bg-red-100 text-sm text-red-700" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H3a1 1 0 000 2h14a1 1 0 100-2h-2V3a1 1 0 00-1-1H6zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" clip-rule="evenodd"/></svg>
+                Delete
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="rounded-lg border border-dashed border-gray-200 p-8 text-center">
+      <h3 class="text-lg font-medium text-gray-900">No tasks yet</h3>
+      <p class="mt-2 text-sm text-gray-500">You don't have any tasks. Click the button to add your first one.</p>
+      <div class="mt-4">
+        <%= link_to new_task_path, class: "inline-flex items-center px-3 py-2 rounded-md bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-700" do %>
+          Create Task
+        <% end %>
+      </div>
+    </div>
   <% end %>
-</ul>
+
+</div>
