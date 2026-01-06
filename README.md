@@ -1,24 +1,12 @@
-# README
+This is a task manager project to teach myself Ruby and PostgreSQL
+# Important Ruby files to be aware of:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| File / Folder                         | What it does                              |
+| ------------------------------------- | ----------------------------------------- |
+| `app/models/task.rb`                  | Database model (Ruby object stored in DB) |
+| `db/migrate/*`                        | Defines database structure                |
+| `app/controllers/tasks_controller.rb` | App logic & request handling              |
+| `app/views/tasks/*`                   | HTML templates                            |
+| `config/routes.rb`                    | URL → controller mapping                  |
+| `app/assets/*`                        | CSS / JS / images                         |
+| `app/javascript/*`                    | Front-end JS                              |
