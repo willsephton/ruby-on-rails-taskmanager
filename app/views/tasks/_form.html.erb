@@ -15,6 +15,13 @@
         </div>
       </div>
 
+      <div>
+        <%= f.label :due_date, class: "block text-sm font-medium text-gray-700" %>
+        <div class="mt-1 max-w-xs">
+          <%= f.date_field :due_date, class: "block w-full rounded-md border border-gray-200 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
+        </div>
+      </div>
+
       <div class="flex items-center gap-2">
         <%= f.check_box :completed, class: "h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
         <%= f.label :completed, class: "text-sm text-gray-700" %>

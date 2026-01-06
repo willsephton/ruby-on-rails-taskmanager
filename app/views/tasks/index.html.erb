@@ -27,7 +27,13 @@
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">Completed</span>
                 <% end %>
               </div>
-              <p class="mt-2 text-sm text-gray-500">Created <%= task.created_at.strftime("%b %d, %Y") if task.respond_to?(:created_at) %></p>
+              <p class="mt-2 text-sm text-gray-500">
+                <% if task.due_date.present? %>
+                  <span class="text-yellow-700">Due <span class="font-medium text-gray-900"><%= task.due_date.strftime("%b %d, %Y") %></span></span>
+                  &nbsp;&middot;&nbsp;
+                <% end %>
+                Created <%= task.created_at.strftime("%b %d, %Y") if task.respond_to?(:created_at) %>
+              </p>
             </div>
 
             <div class="ml-4 flex items-center space-x-2">
