@@ -18,7 +18,7 @@
   <% if @tasks.any? %>
     <ul class="space-y-4">
       <% @tasks.each do |task| %>
-        <li class="bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition">
+        <li id="task_<%= task.id %>" class="bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md transition">
           <div class="flex items-center justify-between p-4 sm:p-5">
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-3">

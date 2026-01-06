@@ -35,8 +35,13 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
+    removed_id = @task.id
     @task.destroy
-    redirect_to tasks_path, notice: "Task deleted!"
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("task_#{removed_id}") }
+      format.html { redirect_to tasks_path, notice: "Task deleted!" }
+    end
   end
 
   private
